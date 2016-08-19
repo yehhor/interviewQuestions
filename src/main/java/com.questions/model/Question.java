@@ -1,30 +1,39 @@
 package com.questions.model;
 
+import java.sql.Array;
+
 /**
  * Created by yehor on 29.06.2016.
  */
 public class Question extends BaseEntity {
 
-    public Question(Integer id, String question, Integer answer, int theme_id, int language_id) {
+    public Question(Integer id,
+                    String question,
+                    String theme,
+                    String language) {
         this.id = id;
         this.question = question;
-        this.answer = answer;
-        this.theme_id = theme_id;
-        this.language_id = language_id;
+        this.theme = theme;
+        this.language = language;
     }
 
-    public Question()
-    {
+    public Question() {
 
     }
 
     private String question;
 
-    private Integer answer;
+    private String answer;
 
-    private Integer theme_id;
+    private String wanswer0;
 
-    private Integer language_id;
+    private String wanswer1;
+
+    private String wanswer2;
+
+    private String theme;
+
+    private String language;
 
     public String getQuestion() {
         return question;
@@ -34,38 +43,65 @@ public class Question extends BaseEntity {
         this.question = question;
     }
 
-    public Integer getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Integer answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
-    public int getTheme_id() {
-        return theme_id;
+    public String getTheme() {
+        return theme;
     }
 
-    public void setTheme_id(int theme_id) {
-        this.theme_id = theme_id;
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
-    public int getLanguage_id() {
-        return language_id;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setLanguage_id(int language_id) {
-        this.language_id = language_id;
+    public void setLanguage(String language) {
+        this.language = language;
     }
+
+    public String getWanswer0() {
+        return wanswer0;
+    }
+
+    public void setWanswer0(String wanswer0) {
+        this.wanswer0 = wanswer0;
+    }
+
+    public String getWanswer1() {
+        return wanswer1;
+    }
+
+    public void setWanswer1(String wanswer1) {
+        this.wanswer1 = wanswer1;
+    }
+
+    public String getWanswer2() {
+        return wanswer2;
+    }
+
+    public void setWanswer2(String wanswer2) {
+        this.wanswer2 = wanswer2;
+    }
+
 
     @Override
     public String toString() {
         return "Question{" +
-                "id='" + id + '\'' +
-                ", question='" + question + '\'' +
+                "question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
-                ", theme_id=" + theme_id +
-                ", language_id=" + language_id +
+                ", wanswer0='" + wanswer0 + '\'' +
+                ", wanswer1='" + wanswer1 + '\'' +
+                ", wanswer2='" + wanswer2 + '\'' +
+                ", theme='" + theme + '\'' +
+                ", language=" + language +
                 '}';
     }
 }

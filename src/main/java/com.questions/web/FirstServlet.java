@@ -26,7 +26,7 @@ public class FirstServlet extends HttpServlet{
 
     @Override
     public void init() throws ServletException {
-        appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
         LOG.info(Arrays.toString(appCtx.getBeanDefinitionNames()));
         controller = (QuestionListController) appCtx.getBean("questionListController");
 

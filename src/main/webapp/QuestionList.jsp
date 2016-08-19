@@ -14,6 +14,8 @@ Here is the list of questions with answers
     <tr>
         <th>id</th>
         <th>question</th>
+        <th>theme</th>
+        <th>language</th>
         <th>answer</th>
     </tr>
     </thead>
@@ -21,6 +23,8 @@ Here is the list of questions with answers
         <tr>
             <td>${question.id}</td>
             <td>${question.question}</td>
+            <td>${question.theme}</td>
+            <td>${question.language}</td>
             <td>${question.answer}</td>
         </tr>
     </c:forEach>
