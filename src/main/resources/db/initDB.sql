@@ -26,7 +26,11 @@ CREATE UNIQUE INDEX themeName ON themes (name);
 CREATE TABLE answers
 (
   id INTEGER PRIMARY KEY DEFAULT nextval('global_seq_answers'),
-  name    VARCHAR
+  name    VARCHAR,
+  theme_id INTEGER,
+  language_id INTEGER,
+  FOREIGN KEY (theme_id) REFERENCES themes (id),
+  FOREIGN KEY (language_id) REFERENCES languages (id)
 );
 CREATE UNIQUE INDEX answersName ON answers (name);
 

@@ -13,14 +13,15 @@ INSERT INTO languages (name, id) VALUES
 INSERT INTO themes (name, id) VALUES
   ('OOP', 1),
   ('OOD', 2),
+  ('No theme', 4),
   ('RunTime...', 3);
 
-INSERT INTO answers (name) VALUES
-  ('OOP'),
-  ('OOD'),
-  ('Java'),
-  ('php'),
-  ('RunTime...');
+INSERT INTO answers (name, language_id, theme_id) VALUES
+  ('OOP', 1, 4),
+  ('OOD', 1, 4),
+  ('Java', 1, 4),
+  ('php', 1, 4),
+  ('RunTime...', 1, 4);
 
 
 INSERT INTO questions (question, answer_id, language_id, theme_id) VALUES
