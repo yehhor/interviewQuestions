@@ -19,3 +19,6 @@ _book
 
 .gitignore
 .idea
+out
+target
+log

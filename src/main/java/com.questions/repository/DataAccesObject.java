@@ -28,7 +28,7 @@ public class DataAccesObject {
 
     private Connection con = null;
     private final String username = "postgres";
-    private final String password = "admin";
+    private final String password = "";
     private final String URL = "jdbc:postgresql://localhost:5432/questions";
 
     public List<Question> getAll() {
@@ -50,7 +50,7 @@ public class DataAccesObject {
             //Resultset.getMetaData() получаем информацию
             //результирующей таблице
             while (rs.next()) {
-                Question question = new Question(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(4));
+                Question question = new Question(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(4));
                 System.out.println("Adding entity to the list: " + question);
                 list.add(question);
             }

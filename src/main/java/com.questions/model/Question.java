@@ -5,7 +5,7 @@ package com.questions.model;
  */
 public class Question extends BaseEntity {
 
-    public Question(Integer id, String question, String answer, int theme_id, int language_id) {
+    public Question(Integer id, String question, Integer answer, int theme_id, int language_id) {
         this.id = id;
         this.question = question;
         this.answer = answer;
@@ -20,7 +20,7 @@ public class Question extends BaseEntity {
 
     private String question;
 
-    private String answer;
+    private Integer answer;
 
     private Integer theme_id;
 
@@ -34,11 +34,11 @@ public class Question extends BaseEntity {
         this.question = question;
     }
 
-    public String getAnswer() {
+    public Integer getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(Integer answer) {
         this.answer = answer;
     }
 
