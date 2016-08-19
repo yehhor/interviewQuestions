@@ -1,7 +1,7 @@
 package com.questions.web;
 
 import com.questions.model.Question;
-import com.questions.web.questions.QuestionListController;
+import com.questions.web.controllers.QuestionListController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;

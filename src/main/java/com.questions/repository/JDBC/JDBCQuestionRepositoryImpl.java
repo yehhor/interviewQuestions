@@ -1,6 +1,7 @@
-package com.questions.repository;
+package com.questions.repository.JDBC;
 
 import com.questions.model.Question;
+import com.questions.repository.QuestionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -34,7 +35,7 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
     private Connection con = null;
     private final String username = "postgres";
     private final String password = "";
-    private final String URL = "jdbc:postgresql://localhost:5432/questions";
+    private final String URL = "jdbc:postgresql://localhost:5432/controllers";
 
     public List<Question> getAll() {
 

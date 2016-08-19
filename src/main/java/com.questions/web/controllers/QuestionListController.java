@@ -1,4 +1,4 @@
-package com.questions.web.questions;
+package com.questions.web.controllers;
 
 import com.questions.model.Question;
 import com.questions.service.QuestionServiceImpl;
