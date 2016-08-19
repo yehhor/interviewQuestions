@@ -1,6 +1,8 @@
 package com.questions.repository;
 
 import com.questions.model.Question;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +17,7 @@ import java.util.List;
 public class DataAccesObject {
 
     private static DataAccesObject dao;
+    private static final Logger LOG = LoggerFactory.getLogger(DataAccesObject.class);
 
     private DataAccesObject() {
 
@@ -37,21 +40,14 @@ public class DataAccesObject {
         try {
 
             Class.forName("org.postgresql.Driver");
-            //Загружаем драйвер
             con = DriverManager.getConnection(URL, username, password);
-            //соединяемся
-            if (con != null) System.out.println("Connection Successful !\n");
+            if (con != null) LOG.debug("Connection succesfull");
             if (con == null) System.exit(0);
             Statement st = con.createStatement();
-            //Statement позволяет отправлять запросы базе данных
             ResultSet rs = st.executeQuery("select * from questions");
-            //ResultSet получает результирующую таблицу
-            int x = rs.getMetaData().getColumnCount();
-            //Resultset.getMetaData() получаем информацию
-            //результирующей таблице
             while (rs.next()) {
                 Question question = new Question(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(4));
-                System.out.println("Adding entity to the list: " + question);
+                LOG.debug("Adding entity to the list: " + question);
                 list.add(question);
             }
             System.out.println();
@@ -59,9 +55,9 @@ public class DataAccesObject {
             if (st != null) st.close();
             if (con != null) con.close();
         } catch (Exception e) {
-            System.out.println("Exception happened");
+            LOG.debug(e.toString());
         }
-        System.out.println(list);
+        LOG.info(list.toString());
         return list;
     }
 
