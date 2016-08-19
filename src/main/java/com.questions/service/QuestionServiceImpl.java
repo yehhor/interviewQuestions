@@ -1,7 +1,6 @@
 package com.questions.service;
 
 import com.questions.model.Question;
-import com.questions.repository.JDBCQuestionRepositoryImpl;
 import com.questions.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +14,10 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
-    private QuestionRepository dao;
+    private QuestionRepository questionRepository;
 
     public List<Question> getAll()
     {
-        return dao.getAll();
+        return questionRepository.getAll();
     }
 }
