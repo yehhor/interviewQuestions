@@ -1,7 +1,6 @@
 package com.questions.web;
 
 import com.questions.model.Question;
-import com.questions.service.QuestionService;
 import com.questions.web.questions.QuestionListController;
 
 import javax.servlet.ServletException;

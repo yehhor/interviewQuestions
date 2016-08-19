@@ -1,7 +1,7 @@
 package com.questions.web.questions;
 
 import com.questions.model.Question;
-import com.questions.service.QuestionService;
+import com.questions.service.QuestionServiceImpl;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class QuestionListController {
 
-    private QuestionService service = new QuestionService();
+    private QuestionServiceImpl service = new QuestionServiceImpl();
 
     public List<Question> getAll() {
         return service.getAll();

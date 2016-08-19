@@ -3,6 +3,7 @@ package com.questions.repository;
 import com.questions.model.Question;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,20 +15,21 @@ import java.util.List;
 /**
  * Created by yehor on 29.06.2016.
  */
-public class DataAccesObject {
+@Repository
+public class JDBCQuestionRepositoryImpl implements QuestionRepository {
 
-    private static DataAccesObject dao;
-    private static final Logger LOG = LoggerFactory.getLogger(DataAccesObject.class);
+//    private static JDBCQuestionRepositoryImpl dao;
+    private static final Logger LOG = LoggerFactory.getLogger(JDBCQuestionRepositoryImpl.class);
 
-    private DataAccesObject() {
-
-    }
-
-    public static DataAccesObject getInstance() {
-        if (dao == null)
-            dao = new DataAccesObject();
-        return dao;
-    }
+//    private JDBCQuestionRepositoryImpl() {
+//
+//    }
+//
+//    public static JDBCQuestionRepositoryImpl getInstance() {
+//        if (dao == null)
+//            dao = new JDBCQuestionRepositoryImpl();
+//        return dao;
+//    }
 
     private Connection con = null;
     private final String username = "postgres";

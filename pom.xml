@@ -13,6 +13,7 @@
         <postgresql.version>9.4.1208</postgresql.version>
         <slf4j.version>1.7.21</slf4j.version>
         <logback.version>1.1.7</logback.version>
+        <spring.version>4.3.2.RELEASE</spring.version>
     </properties>
     <dependencies>
 
@@ -52,6 +53,19 @@
             <scope>provided</scope>
         </dependency>
 
+
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-loggins</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
