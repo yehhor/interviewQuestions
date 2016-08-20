@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +25,7 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
     private static final Logger LOG = LoggerFactory.getLogger(JDBCQuestionRepositoryImpl.class);
 
     private SimpleJdbcInsert simpleInsert;
+
     private RowMapper<Question> MAPPER = (rs, i) -> (new Question(rs.getInt("id"),
             rs.getString("question"),
             rs.getString("theme"),
@@ -53,32 +56,38 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
     }
 
     @Override
-    public List<Question> getAllByThemeAndLanguage() {
+    public List<Question> getByThemeAndLanguage(String theme, String lang) {
+        String sql = "SELECT q.question,  t.name, l.name from questions q " +
+                "JOIN themes as t on t.id=q.theme_id " +
+                "JOIN languages as l on l.id=q.language_id " +
+                "Where t.name = :t_name and l.name = :l_name";
+        SqlParameterSource map = new MapSqlParameterSource("t_name", theme)
+                .addValue("l_name", lang);
+        return namedJdbcTemplate.queryForList(sql, map, Question.class);
+    }
+
+    @Override
+    public Question get(int id) {
+        String sql = "SELECT q.name, t.name, l.name from questions q " +
+                "JOIN themes as t on t.id=q.theme_id " +
+                "JOIN languages as l on l.id=q.language_id " +
+                "Where q.id = :id";
+        SqlParameterSource map = new MapSqlParameterSource("id", id);
+        return namedJdbcTemplate.queryForObject(sql, map, Question.class);
+    }
+
+    @Override
+    public Question save(Question question) {
         return null;
     }
 
     @Override
-    public List<Question> getByThemeAndLanguage() {
-        return null;
-    }
-
-    @Override
-    public List<Question> get() {
-        return null;
-    }
-
-    @Override
-    public Question save() {
-        return null;
-    }
-
-    @Override
-    public boolean delete() {
+    public boolean delete(int id) {
         return false;
     }
 
     @Override
-    public List<Question> getWithAnswers() {
+    public Question getWithAnswers(int id) {
         return null;
     }
 }

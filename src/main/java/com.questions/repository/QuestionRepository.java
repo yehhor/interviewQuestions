@@ -11,16 +11,14 @@ import java.util.List;
 public interface QuestionRepository {
     List<Question> getAll();
 
-    List<Question> getAllByThemeAndLanguage();
+    List<Question> getByThemeAndLanguage(String theme, String lang);
 
-    List<Question> getByThemeAndLanguage();
+    Question get(int id);
 
-    List<Question> get();
+    Question save(Question q);
 
-    Question save();
+    boolean delete(int id);
 
-    boolean delete();
-
-    List<Question> getWithAnswers();
+    Question getWithAnswers(int id);
 
 }
