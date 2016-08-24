@@ -74,8 +74,7 @@ public class JDBCQuestionRepositoryImplTest {
 
     @Test
     public void getWithAnswers() throws Exception {
-
-        System.out.println(repository.getWithAnswers(100000));
+        MATCHER.assertEquals(testQ0, repository.getWithAnswers(testQ0.getId()));
     }
 
 }

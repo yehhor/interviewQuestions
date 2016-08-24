@@ -14,6 +14,8 @@ public class Answer extends BaseEntity {
         this.right = right;
     }
 
+    public Answer(){}
+
     public String getName() {
         return name;
     }
@@ -28,5 +30,13 @@ public class Answer extends BaseEntity {
 
     public void setRight(boolean right) {
         this.right = right;
+    }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "name='" + name + '\'' +
+                ", right=" + right +
+                '}';
     }
 }

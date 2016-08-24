@@ -21,7 +21,6 @@ public class QuestionTestData {
 
     public static List<Question> testList = Arrays.asList(testQ0, testQ1, testQ2, testQ3);
     public static List<Question> testListJavaOOP = Arrays.asList(testQ2, testQ3);
-    public static List<Question> testListByLangJava = Arrays.asList(testQ0, testQ1, testQ3);
 
     public static ModelMatcher<Question> MATCHER = new ModelMatcher<>(Question.class,
             (expected, actual) -> {

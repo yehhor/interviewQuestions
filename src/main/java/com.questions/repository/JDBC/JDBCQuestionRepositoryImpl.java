@@ -1,12 +1,12 @@
 package com.questions.repository.JDBC;
 
-import com.questions.model.Language;
+import com.questions.model.Answer;
 import com.questions.model.Question;
-import com.questions.model.Theme;
 import com.questions.repository.QuestionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,7 +16,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
 
     private SimpleJdbcInsert simpleInsert;
 
-    private RowMapper<Question> MAPPER = (rs, i) ->
+    private RowMapper<Question> questionMAPPER = (rs, i) ->
         new Question(rs.getInt("id"),
                 rs.getString("question"),
                 rs.getString("theme"),
@@ -53,7 +54,7 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
                 "FROM questions q\n " +
                 "JOIN themes t ON t.id=q.theme_id " +
                 "JOIN languages l ON l.id=q.language_id " +
-                "ORDER BY id", MAPPER);
+                "ORDER BY id", questionMAPPER);
     }
 
     @Override
@@ -64,7 +65,7 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
                 "WHERE t.name = :theme AND l.name = :lang";
         SqlParameterSource map = new MapSqlParameterSource("theme", theme)
                 .addValue("lang", lang);
-        return namedJdbcTemplate.query(sql, map, MAPPER);
+        return namedJdbcTemplate.query(sql, map, questionMAPPER);
     }
 
     @Override
@@ -75,7 +76,7 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
                 "JOIN languages l ON q.language_id = l.id " +
                 "WHERE q.id = :id";
         SqlParameterSource map = new MapSqlParameterSource("id", id);
-        return namedJdbcTemplate.queryForObject(sql, map, MAPPER);
+        return namedJdbcTemplate.queryForObject(sql, map, questionMAPPER);
     }
 
     @Override
@@ -85,7 +86,7 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
                 .addValue("language", question.getLanguage())
                 .addValue("theme", question.getTheme());
 
-//        if(question.isNew())
+
         return null;
     }
 
@@ -96,14 +97,18 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
 
     @Override
     public Question getWithAnswers(int id) {
-        String sql = "SELECT q.id, q.question, t.name AS theme, l.name AS language, string_agg(a.name, ',') AS answers, a.isright as right " +
+        String sql = "SELECT q.id, q.question, t.name AS theme, l.name AS language " +
                 "FROM questions q " +
                 "JOIN themes t ON q.theme_id = t.id " +
                 "JOIN languages l ON q.language_id = l.id " +
-                "JOIN answers a ON a.question_id = q.id " +
                 "WHERE q.id = :id";
         SqlParameterSource map = new MapSqlParameterSource("id", id);
-        return namedJdbcTemplate.queryForObject(sql, map, MAPPER);
+        Question q = namedJdbcTemplate.queryForObject(sql, map, questionMAPPER);
+        sql = "SELECT a.name, a.isright as \"right\" from answers a " +
+                "where a.question_id = :id";
+        List<Answer> answers = namedJdbcTemplate.query(sql, map, BeanPropertyRowMapper.newInstance(Answer.class));
+        q.setAnswers(new HashSet<>(answers));
+        return q;
     }
 }
 

@@ -47,12 +47,6 @@ public class Question extends BaseEntity {
         this.answers = answers;
     }
 
-    public void setAnswersFromArray(String[] answers) {
-
-        //ToDo setanswers
-
-    }
-
     public Theme getTheme() {
         return theme;
     }
@@ -77,9 +71,10 @@ public class Question extends BaseEntity {
     @Override
     public String toString() {
         return "Question{" +
-                "question='" + name + '\'' +
-                ", theme='" + theme + '\'' +
+                "name='" + name + '\'' +
+                ", theme=" + theme +
                 ", language=" + language +
+                ", answers=" + answers +
                 '}';
     }
 }
