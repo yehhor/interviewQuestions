@@ -1,6 +1,8 @@
 package com.questions.repository;
 
+import com.questions.model.Language;
 import com.questions.model.Question;
+import com.questions.model.Theme;
 
 import java.util.List;
 

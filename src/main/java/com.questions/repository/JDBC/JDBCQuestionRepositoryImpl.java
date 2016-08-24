@@ -1,6 +1,8 @@
 package com.questions.repository.JDBC;
 
+import com.questions.model.Language;
 import com.questions.model.Question;
+import com.questions.model.Theme;
 import com.questions.repository.QuestionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -26,10 +29,11 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
 
     private SimpleJdbcInsert simpleInsert;
 
-    private RowMapper<Question> MAPPER = (rs, i) -> (new Question(rs.getInt("id"),
-            rs.getString("question"),
-            rs.getString("theme"),
-            rs.getString("language")));
+    private RowMapper<Question> MAPPER = (rs, i) ->
+        new Question(rs.getInt("id"),
+                rs.getString("question"),
+                rs.getString("theme"),
+                rs.getString("language"));
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -45,39 +49,43 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
 
     @Override
     public List<Question> getAll() {
-//        return jdbcTemplate.query("SELECT q.id, question, string_agg(a.name, ',') AS answers, t.name AS theme_name, l.name AS lang_name FROM questions AS q\n" +
-//                "JOIN answers AS a ON a.question_id=q.id\n" +
-//                "JOIN themes AS t ON t.id=q.theme_id\n" +
-//                "JOIN languages AS l ON l.id=q.language_id\n" +
-//                "GROUP BY q.id, q.question, t.name, l.name", MAPPER);
-        return jdbcTemplate.query("SELECT q.id, q.question, t.name as theme, l.name as language FROM questions q\n" +
-                "join themes as t on t.id=q.theme_id\n" +
-                "join languages as l on l.id=q.language_id", MAPPER);
+        return jdbcTemplate.query("SELECT q.id, q.question, t.name AS theme, l.name AS language " +
+                "FROM questions q\n " +
+                "JOIN themes t ON t.id=q.theme_id " +
+                "JOIN languages l ON l.id=q.language_id " +
+                "ORDER BY id", MAPPER);
     }
 
     @Override
     public List<Question> getByThemeAndLanguage(String theme, String lang) {
-        String sql = "SELECT q.question,  t.name, l.name from questions q " +
-                "JOIN themes as t on t.id=q.theme_id " +
-                "JOIN languages as l on l.id=q.language_id " +
-                "Where t.name = :t_name and l.name = :l_name";
-        SqlParameterSource map = new MapSqlParameterSource("t_name", theme)
-                .addValue("l_name", lang);
-        return namedJdbcTemplate.queryForList(sql, map, Question.class);
+        String sql = "SELECT q.id, q.question, t.name AS theme, l.name AS language FROM questions q " +
+                "JOIN themes t ON t.id=q.theme_id " +
+                "JOIN languages l ON l.id=q.language_id " +
+                "WHERE t.name = :theme AND l.name = :lang";
+        SqlParameterSource map = new MapSqlParameterSource("theme", theme)
+                .addValue("lang", lang);
+        return namedJdbcTemplate.query(sql, map, MAPPER);
     }
 
     @Override
     public Question get(int id) {
-        String sql = "SELECT q.name, t.name, l.name from questions q " +
-                "JOIN themes as t on t.id=q.theme_id " +
-                "JOIN languages as l on l.id=q.language_id " +
-                "Where q.id = :id";
+        String sql = "SELECT q.id, q.question, t.name AS theme, l.name AS language " +
+                "FROM questions q " +
+                "JOIN themes t ON q.theme_id = t.id " +
+                "JOIN languages l ON q.language_id = l.id " +
+                "WHERE q.id = :id";
         SqlParameterSource map = new MapSqlParameterSource("id", id);
-        return namedJdbcTemplate.queryForObject(sql, map, Question.class);
+        return namedJdbcTemplate.queryForObject(sql, map, MAPPER);
     }
 
     @Override
     public Question save(Question question) {
+        SqlParameterSource q = new MapSqlParameterSource()
+                .addValue("id", question.getId())
+                .addValue("language", question.getLanguage())
+                .addValue("theme", question.getTheme());
+
+//        if(question.isNew())
         return null;
     }
 
@@ -88,7 +96,14 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
 
     @Override
     public Question getWithAnswers(int id) {
-        return null;
+        String sql = "SELECT q.id, q.question, t.name AS theme, l.name AS language, string_agg(a.name, ',') AS answers, a.isright as right " +
+                "FROM questions q " +
+                "JOIN themes t ON q.theme_id = t.id " +
+                "JOIN languages l ON q.language_id = l.id " +
+                "JOIN answers a ON a.question_id = q.id " +
+                "WHERE q.id = :id";
+        SqlParameterSource map = new MapSqlParameterSource("id", id);
+        return namedJdbcTemplate.queryForObject(sql, map, MAPPER);
     }
 }
 

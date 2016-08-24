@@ -11,7 +11,7 @@ CREATE SEQUENCE global_seq_answers START 100000;
 CREATE TABLE languages
 (
   id   INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name VARCHAR
+  name VARCHAR NOT NULL    DEFAULT 'No Lang'
 );
 CREATE UNIQUE INDEX languageName
   ON languages (name);
@@ -20,36 +20,32 @@ CREATE UNIQUE INDEX languageName
 CREATE TABLE themes
 (
   id   INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  name VARCHAR
+  name VARCHAR NOT NULL    DEFAULT 'No Theme'
 );
 CREATE UNIQUE INDEX themeName
   ON themes (name);
+
 
 CREATE TABLE questions
 (
   id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   question    VARCHAR NOT NULL,
-  language_id INTEGER,
-  theme_id    INTEGER,
-  FOREIGN KEY (theme_id) REFERENCES themes (id) ON DELETE CASCADE,
-  FOREIGN KEY (language_id) REFERENCES languages (id) ON DELETE CASCADE
+  language_id INTEGER NOT NULL    DEFAULT 0,
+  theme_id    INTEGER NOT NULL    DEFAULT 0,
+  FOREIGN KEY (theme_id) REFERENCES themes (id),
+  FOREIGN KEY (language_id) REFERENCES languages (id)
 );
 CREATE UNIQUE INDEX questionText
-  ON questions (question);
+  ON questions (question, language_id);
+
 
 CREATE TABLE answers
 (
   id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq_answers'),
-  name        VARCHAR,
-  isRight     BOOLEAN DEFAULT FALSE,
-  question_id INTEGER,
-  theme_id    INTEGER,
-  language_id INTEGER,
-  FOREIGN KEY (theme_id) REFERENCES themes (id),
-  FOREIGN KEY (question_id) REFERENCES questions (id),
-  FOREIGN KEY (language_id) REFERENCES languages (id)
+  name        VARCHAR NOT NULL    DEFAULT 'No answer',
+  isRight     BOOLEAN             DEFAULT FALSE,
+  question_id INTEGER NOT NULL,
+  FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX answersName
-  ON answers (name);
 
 

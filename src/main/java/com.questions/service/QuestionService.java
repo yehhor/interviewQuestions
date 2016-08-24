@@ -10,4 +10,18 @@ import java.util.List;
 public interface QuestionService {
     List<Question> getAll();
 
+    List<Question> getByThemeAndLanguage(String theme, String lang);
+
+    List<Question> getByTheme(String theme, String lang);
+
+    List<Question> getByLang(String theme, String lang);
+
+    Question get(int id);
+
+    Question save(Question q);
+
+    boolean delete(int id);
+
+    Question getWithAnswers(int id);
+
 }

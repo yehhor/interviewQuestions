@@ -1,6 +1,7 @@
 package com.questions.model;
 
-import java.sql.Array;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by yehor on 29.06.2016.
@@ -8,98 +9,75 @@ import java.sql.Array;
 public class Question extends BaseEntity {
 
     public Question(Integer id,
-                    String question,
+                    String name,
                     String theme,
-                    String language) {
+                    String language
+                    ) {
         this.id = id;
-        this.question = question;
-        this.theme = theme;
-        this.language = language;
+        this.name = name;
+        this.theme = new Theme(theme);
+        this.language = new Language(language);
     }
 
     public Question() {
 
     }
 
-    private String question;
+    private String name;
 
-    private String answer;
+    private Theme theme;
 
-    private String wanswer0;
+    private Language language;
 
-    private String wanswer1;
+    private Set<Answer> answers;
 
-    private String wanswer2;
-
-    private String theme;
-
-    private String language;
-
-    public String getQuestion() {
-        return question;
+    public String getName() {
+        return name;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAnswer() {
-        return answer;
+    public Set<Answer> getAnswers() {
+        return answers;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setAnswers(Set<Answer> answers) {
+        this.answers = answers;
     }
 
-    public String getTheme() {
+    public void setAnswersFromArray(String[] answers) {
+
+        //ToDo setanswers
+
+    }
+
+    public Theme getTheme() {
         return theme;
     }
 
-    public void setTheme(String theme) {
+    public void setTheme(Theme theme) {
         this.theme = theme;
     }
 
-    public String getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(Language language) {
         this.language = language;
     }
 
-    public String getWanswer0() {
-        return wanswer0;
-    }
 
-    public void setWanswer0(String wanswer0) {
-        this.wanswer0 = wanswer0;
+    public boolean isNew() {
+        return getId() == null;
     }
-
-    public String getWanswer1() {
-        return wanswer1;
-    }
-
-    public void setWanswer1(String wanswer1) {
-        this.wanswer1 = wanswer1;
-    }
-
-    public String getWanswer2() {
-        return wanswer2;
-    }
-
-    public void setWanswer2(String wanswer2) {
-        this.wanswer2 = wanswer2;
-    }
-
 
     @Override
     public String toString() {
         return "Question{" +
-                "question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
-                ", wanswer0='" + wanswer0 + '\'' +
-                ", wanswer1='" + wanswer1 + '\'' +
-                ", wanswer2='" + wanswer2 + '\'' +
+                "question='" + name + '\'' +
                 ", theme='" + theme + '\'' +
                 ", language=" + language +
                 '}';
