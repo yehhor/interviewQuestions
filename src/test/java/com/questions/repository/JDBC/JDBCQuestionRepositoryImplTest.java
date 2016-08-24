@@ -29,7 +29,7 @@ import static com.questions.QuestionTestData.*;
         "classpath:spring/spring-app.xml"
 })
 @Sql(scripts = "classpath:db/populateDB.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, config = @SqlConfig(encoding = "UTF-8"))
-@ActiveProfiles("jdbc")
+@ActiveProfiles("JPA")
 public class JDBCQuestionRepositoryImplTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(JDBCQuestionRepositoryImplTest.class);

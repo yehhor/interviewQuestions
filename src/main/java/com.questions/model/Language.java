@@ -1,6 +1,5 @@
 package com.questions.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,15 +19,10 @@ public class Language extends BaseEntity{
     public Language() {
     }
 
-    @Column(name = "name")
-    private String name;
 
     @OneToMany(mappedBy = "language")
     private Set<Question> questions;
 
-    public String getName() {
-        return name;
-    }
 
     public Set<Question> getQuestions() {
         return questions;
@@ -38,7 +32,4 @@ public class Language extends BaseEntity{
         this.questions = questions;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

@@ -3,10 +3,8 @@ DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS languages;
 DROP TABLE IF EXISTS themes;
 DROP SEQUENCE IF EXISTS global_seq;
-DROP SEQUENCE IF EXISTS global_seq_answers;
 
 CREATE SEQUENCE global_seq START 100000;
-CREATE SEQUENCE global_seq_answers START 100000;
 
 CREATE TABLE languages
 (
@@ -41,7 +39,7 @@ CREATE UNIQUE INDEX questionText
 
 CREATE TABLE answers
 (
-  id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq_answers'),
+  id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name        VARCHAR NOT NULL    DEFAULT 'No answer',
   isRight     BOOLEAN             DEFAULT FALSE,
   question_id INTEGER NOT NULL,

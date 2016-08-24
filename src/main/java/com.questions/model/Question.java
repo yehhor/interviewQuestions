@@ -34,9 +34,6 @@ public class Question extends BaseEntity {
 
     }
 
-    @Column(name = "name")
-    private String name;
-
     @ManyToOne
     @JoinColumn(name = "theme_id")
     private Theme theme;
@@ -47,14 +44,6 @@ public class Question extends BaseEntity {
 
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Answer> answers;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Set<Answer> getAnswers() {
         return answers;
@@ -89,7 +78,7 @@ public class Question extends BaseEntity {
     public String toString() {
         return "Question{" +
                 "id = " + id +
-                ", name='" + name + '\'' +
+                ", name='" + getName() + '\'' +
                 ", theme=" + theme +
                 ", language=" + language +
                 ", answers=" + answers +

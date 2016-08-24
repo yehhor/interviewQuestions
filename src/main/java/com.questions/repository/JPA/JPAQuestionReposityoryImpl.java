@@ -2,10 +2,10 @@ package com.questions.repository.JPA;
 
 import com.questions.model.Question;
 import com.questions.repository.QuestionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class JPAQuestionReposityoryImpl implements QuestionRepository {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager em;
 
     @Override
@@ -29,7 +29,7 @@ public class JPAQuestionReposityoryImpl implements QuestionRepository {
 
     @Override
     public Question get(int id) {
-        return null;
+        return em.find(Question.class, id);
     }
 
     @Override

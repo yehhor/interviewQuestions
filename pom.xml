@@ -16,7 +16,7 @@
         <tomcat-jdbc.version>8.0.32</tomcat-jdbc.version>
         <junit.version>4.12</junit.version>
         <hibernate-vaidator.version>5.2.4.Final</hibernate-vaidator.version>
-        <hibernate.version>5.2.2.Final</hibernate.version>
+        <hibernate.version>5.2.1.Final</hibernate.version>
     </properties>
     <dependencies>
 
@@ -88,7 +88,7 @@
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
+            <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
 

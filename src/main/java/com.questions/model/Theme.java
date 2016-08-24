@@ -20,19 +20,9 @@ public class Theme extends BaseEntity {
     public Theme() {
     }
 
-    @Column(name = "name")
-    private String name;
-
     @OneToMany(mappedBy = "theme")
     private Set<Question> questions;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Set<Question> getQuestions() {
         return questions;

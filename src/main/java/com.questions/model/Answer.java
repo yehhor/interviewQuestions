@@ -9,9 +9,6 @@ import javax.persistence.*;
 @Table(name = "answers")
 public class Answer extends BaseEntity {
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "isright")
     private boolean right;
 
@@ -32,14 +29,6 @@ public class Answer extends BaseEntity {
 
     public void setQuestion(Question questionId) {
         this.question = questionId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public boolean isRight() {

@@ -3,7 +3,6 @@ DELETE FROM answers;
 DELETE FROM themes;
 DELETE FROM languages;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
-ALTER SEQUENCE global_seq_answers RESTART WITH 100000;
 
 INSERT INTO languages (name, id) VALUES
   ('Java', 1),
