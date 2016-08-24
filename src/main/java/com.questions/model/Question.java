@@ -1,6 +1,5 @@
 package com.questions.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -12,8 +11,17 @@ public class Question extends BaseEntity {
                     String name,
                     String theme,
                     String language
-                    ) {
+    ) {
         this.id = id;
+        this.name = name;
+        this.theme = new Theme(theme);
+        this.language = new Language(language);
+    }
+
+    public Question(String name,
+                    String theme,
+                    String language
+    ) {
         this.name = name;
         this.theme = new Theme(theme);
         this.language = new Language(language);
@@ -71,7 +79,8 @@ public class Question extends BaseEntity {
     @Override
     public String toString() {
         return "Question{" +
-                "name='" + name + '\'' +
+                "id = " + id +
+                ", name='" + name + '\'' +
                 ", theme=" + theme +
                 ", language=" + language +
                 ", answers=" + answers +

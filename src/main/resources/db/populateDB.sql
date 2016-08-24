@@ -15,7 +15,7 @@ INSERT INTO themes (name, id) VALUES
   ('OOD', 2),
   ('RunTime...', 3);
 
-INSERT INTO questions (question, language_id, theme_id) VALUES
+INSERT INTO questions (name, language_id, theme_id) VALUES
   ('What is your Favorite language?',  1, 3),
   ('What is your unFavorite language?', 3, 3),
   ('Basic programming principle?', 1, 1),

@@ -29,14 +29,14 @@ CREATE UNIQUE INDEX themeName
 CREATE TABLE questions
 (
   id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  question    VARCHAR NOT NULL,
+  name        VARCHAR NOT NULL,
   language_id INTEGER NOT NULL    DEFAULT 0,
   theme_id    INTEGER NOT NULL    DEFAULT 0,
   FOREIGN KEY (theme_id) REFERENCES themes (id),
   FOREIGN KEY (language_id) REFERENCES languages (id)
 );
 CREATE UNIQUE INDEX questionText
-  ON questions (question, language_id);
+  ON questions (name, language_id);
 
 
 CREATE TABLE answers

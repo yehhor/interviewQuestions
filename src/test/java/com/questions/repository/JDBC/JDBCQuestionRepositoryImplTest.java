@@ -27,7 +27,7 @@ import static com.questions.QuestionTestData.*;
         "classpath:spring/spring-db.xml",
         "classpath:spring/spring-app.xml"
 })
-@Sql(scripts = "classpath:db/populateDB.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:db/populateDB.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, config = @SqlConfig(encoding = "UTF-8"))
 public class JDBCQuestionRepositoryImplTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(JDBCQuestionRepositoryImplTest.class);
@@ -48,7 +48,7 @@ public class JDBCQuestionRepositoryImplTest {
 
     @Test(expected = NotFoundException.class)
     public void getByThemeAndLanguageNotFound() throws Exception {
-        if(repository.getByThemeAndLanguage("Incorrect", "Test").isEmpty())
+        if (repository.getByThemeAndLanguage("Incorrect", "Test").isEmpty())
             throw new NotFoundException("everything is ok");
     }
 
@@ -64,7 +64,17 @@ public class JDBCQuestionRepositoryImplTest {
 
     @Test
     public void save() throws Exception {
+        //ToDo rewrite test to getAll insted
+        testSaveNew = repository.save(testSaveNew);
+        LOG.info(testSaveNew.toString());
+        MATCHER.assertEquals(testSaveNew, repository.get(testSaveNew.getId()));
+    }
 
+    @Test
+    public void update() throws Exception {
+        //ToDo rewrite test to getAll insted
+        repository.save(testUpdate);
+        MATCHER.assertEquals(testUpdate, repository.get(testUpdate.getId()));
     }
 
     @Test
