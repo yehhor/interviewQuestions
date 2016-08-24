@@ -18,7 +18,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -118,7 +117,9 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
 
     @Override
     public boolean delete(int id) {
-        return false;
+
+        return jdbcTemplate.update("DELETE FROM questions WHERE id = " + id) != 0;
+
     }
 
     @Override

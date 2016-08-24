@@ -1,10 +1,13 @@
 package com.questions.model;
 
+import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Created by yehor on 29.06.2016.
  */
+@Entity
+@Table(name = "questions")
 public class Question extends BaseEntity {
 
     public Question(Integer id,
@@ -31,12 +34,18 @@ public class Question extends BaseEntity {
 
     }
 
+    @Column(name = "name")
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "theme_id")
     private Theme theme;
 
+    @ManyToOne
+    @JoinColumn(name = "language_id")
     private Language language;
 
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Answer> answers;
 
     public String getName() {

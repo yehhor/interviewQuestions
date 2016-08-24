@@ -22,6 +22,8 @@ public class QuestionTestData {
     public static Question testNotFound = new Question(-50, "mockQuestion", "OOP", "Java");
 
     public static List<Question> testList = Arrays.asList(testQ0, testQ1, testQ2, testQ3);
+    public static List<Question> testDelete = Arrays.asList(testQ1, testQ2, testQ3);
+
     public static List<Question> testListJavaOOP = Arrays.asList(testQ2, testQ3);
 
     public static ModelMatcher<Question> MATCHER = new ModelMatcher<>(Question.class,

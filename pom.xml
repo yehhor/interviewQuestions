@@ -15,6 +15,8 @@
         <spring.version>4.3.2.RELEASE</spring.version>
         <tomcat-jdbc.version>8.0.32</tomcat-jdbc.version>
         <junit.version>4.12</junit.version>
+        <hibernate-vaidator.version>5.2.4.Final</hibernate-vaidator.version>
+        <hibernate.version>5.2.2.Final</hibernate.version>
     </properties>
     <dependencies>
 
@@ -70,10 +72,31 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
+
+        <!--hibernate -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-vaidator.version}</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jdbc -->
@@ -82,13 +105,6 @@
             <artifactId>tomcat-jdbc</artifactId>
             <version>${tomcat-jdbc.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -28,6 +29,7 @@ import static com.questions.QuestionTestData.*;
         "classpath:spring/spring-app.xml"
 })
 @Sql(scripts = "classpath:db/populateDB.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, config = @SqlConfig(encoding = "UTF-8"))
+@ActiveProfiles("jdbc")
 public class JDBCQuestionRepositoryImplTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(JDBCQuestionRepositoryImplTest.class);
@@ -79,6 +81,14 @@ public class JDBCQuestionRepositoryImplTest {
 
     @Test
     public void delete() throws Exception {
+        repository.delete(testQ0.getId());
+        MATCHER.assertCollectionEquals(testDelete, repository.getAll());
+    }
+
+    @Test (expected = Exception.class)
+    public void deleteNotFound() throws Exception {
+        if(!repository.delete(5))
+            throw new Exception();
 
     }
 
