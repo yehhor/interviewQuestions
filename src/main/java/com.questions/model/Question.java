@@ -3,12 +3,28 @@ package com.questions.model;
 import javax.persistence.*;
 import java.util.Set;
 
+import static com.questions.model.Question.GET_ALL;
+import static com.questions.model.Question.GET_BY_THEME_AND_LANG;
+import static com.questions.model.Question.GET_WITH_ANSWERS;
+
 /**
  * Created by yehor on 29.06.2016.
  */
+@NamedQueries({
+    @NamedQuery(name = GET_ALL, query = "SELECT q from Question q LEFT JOIN FETCH q.theme LEFT JOIN FETCH q.language"),
+    @NamedQuery(name = GET_WITH_ANSWERS, query = "SELECT q from Question q LEFT JOIN FETCH q.answers WHERE q.id =:id"),
+    @NamedQuery(name = GET_BY_THEME_AND_LANG, query = "SELECT q from Question q " +
+            "LEFT JOIN FETCH q.theme " +
+            "LEFT JOIN FETCH q.language " +
+            "WHERE q.language.name=:lang and q.theme.name=:theme ")
+})
 @Entity
 @Table(name = "questions")
 public class Question extends BaseEntity {
+
+    public static final String GET_ALL = "Question.getAll";
+    public static final String GET_BY_THEME_AND_LANG = "Question.getByThemeAndLang";
+    public static final String GET_WITH_ANSWERS = "Question.getWithAnswers";
 
     public Question(Integer id,
                     String name,
@@ -34,11 +50,11 @@ public class Question extends BaseEntity {
 
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "theme_id")
     private Theme theme;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language_id")
     private Language language;
 

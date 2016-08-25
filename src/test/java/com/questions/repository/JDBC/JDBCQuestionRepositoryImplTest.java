@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class JDBCQuestionRepositoryImplTest {
         MATCHER.assertEquals(testQ0, repository.get(testQ0.getId()));
     }
 
-    @Test(expected = DataAccessException.class)
+    @Test(expected = NotFoundException.class)
     public void getNotFound() throws Exception {
         repository.get(testNotFound.getId());
     }

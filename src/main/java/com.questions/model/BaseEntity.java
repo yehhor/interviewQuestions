@@ -1,5 +1,9 @@
 package com.questions.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 
 /**
@@ -15,6 +19,7 @@ public abstract class BaseEntity {
     protected Integer id;
 
     @Column(name = "name")
+    @NotEmpty
     protected String name;
 
     public Integer getId() {
