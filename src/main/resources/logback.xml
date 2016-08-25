@@ -14,8 +14,7 @@
         </encoder>
     </appender>
     <logger name="com.questions" level="DEBUG"/>
-    <root level="info">
+    <root level="WARN">
         <appender-ref ref="console"/>
-        <appender-ref ref="file"/>
     </root>
 </configuration>

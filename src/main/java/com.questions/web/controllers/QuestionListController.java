@@ -1,6 +1,7 @@
 package com.questions.web.controllers;
 
 import com.questions.model.Question;
+import com.questions.service.QuestionService;
 import com.questions.service.QuestionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import java.util.List;
 public class QuestionListController {
 
     @Autowired
-    private QuestionServiceImpl service;
+    private QuestionService service;
 
     public List<Question> getAll() {
         return service.getAll();

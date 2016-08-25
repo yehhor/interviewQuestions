@@ -3,6 +3,8 @@ package com.questions.service;
 import com.questions.model.Question;
 import com.questions.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +18,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
 
+    @Cacheable("questions")
     public List<Question> getAll()
     {
         return questionRepository.getAll();
@@ -41,11 +44,13 @@ public class QuestionServiceImpl implements QuestionService {
         return null;
     }
 
+    @CacheEvict(cacheNames = "questions", allEntries = true)
     @Override
     public Question save(Question q) {
         return null;
     }
 
+    @CacheEvict(cacheNames = "questions", allEntries = true)
     @Override
     public boolean delete(int id) {
         return false;

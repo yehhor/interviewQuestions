@@ -1,6 +1,9 @@
 package com.questions.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
+import org.hibernate.annotations.Cache;
 import java.util.Set;
 
 import static com.questions.model.Question.GET_ALL;
@@ -20,6 +23,7 @@ import static com.questions.model.Question.GET_WITH_ANSWERS;
 })
 @Entity
 @Table(name = "questions")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Question extends BaseEntity {
 
     public static final String GET_ALL = "Question.getAll";
@@ -52,13 +56,16 @@ public class Question extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "theme_id")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Theme theme;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "language_id")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Language language;
 
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Answer> answers;
 
     public Set<Answer> getAnswers() {

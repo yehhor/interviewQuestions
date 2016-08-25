@@ -1,6 +1,10 @@
 package com.questions.model;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import java.util.Set;
 
 import static com.questions.model.Theme.GET_TH_ID;

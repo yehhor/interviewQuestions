@@ -1,11 +1,8 @@
 package com.questions.repository.JPA;
 
-import com.questions.model.Language;
 import com.questions.model.Question;
-import com.questions.model.Theme;
 import com.questions.repository.QuestionRepository;
 import com.questions.util.exception.NotFoundException;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
