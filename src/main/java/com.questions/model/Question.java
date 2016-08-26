@@ -64,7 +64,7 @@ public class Question extends BaseEntity {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Language language;
 
-    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "question")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Answer> answers;
 

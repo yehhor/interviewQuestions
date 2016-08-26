@@ -44,7 +44,7 @@ public class Answer extends BaseEntity {
         return "Answer{" +
                 "name='" + name + '\'' +
                 ", right=" + right +
-                ", questionId=" + question +
+                ", questionId=" + question.getId() +
                 '}';
     }
 }

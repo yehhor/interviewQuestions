@@ -4,6 +4,7 @@ import com.questions.model.Question;
 import com.questions.repository.QuestionRepository;
 import com.questions.util.exception.NotFoundException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

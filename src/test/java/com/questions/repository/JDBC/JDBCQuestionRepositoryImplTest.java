@@ -1,8 +1,10 @@
 package com.questions.repository.JDBC;
 
 import com.questions.model.Question;
+import com.questions.repository.JPA.JpaUtil;
 import com.questions.repository.QuestionRepository;
 import com.questions.util.exception.NotFoundException;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,9 +16,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.questions.QuestionTestData.*;
 
@@ -38,10 +42,23 @@ public class JDBCQuestionRepositoryImplTest {
     @Autowired
     private QuestionRepository repository;
 
+    @Autowired
+    private JpaUtil util;
+
+    @Before
+    public void setUp() throws Exception {
+        util.clear2ndLevelHibernateCache();
+    }
+
     @Test
     public void getAll() throws Exception {
         List<Question> list = repository.getAll();
-        MATCHER.assertCollectionEquals(list, testList);
+        MATCHER.assertCollectionEquals(testList, list);
+    }
+
+    @Test
+    public void get() throws Exception {
+        MATCHER.assertEquals(testQ0, repository.get(testQ0.getId()));
     }
 
     @Test
@@ -55,10 +72,6 @@ public class JDBCQuestionRepositoryImplTest {
             throw new NotFoundException("everything is ok");
     }
 
-    @Test
-    public void get() throws Exception {
-        MATCHER.assertEquals(testQ0, repository.get(testQ0.getId()));
-    }
 
     @Test(expected = NotFoundException.class)
     public void getNotFound() throws Exception {
@@ -86,16 +99,17 @@ public class JDBCQuestionRepositoryImplTest {
         MATCHER.assertCollectionEquals(testDelete, repository.getAll());
     }
 
-    @Test (expected = Exception.class)
+    @Test(expected = Exception.class)
     public void deleteNotFound() throws Exception {
-        if(!repository.delete(5))
+        if (!repository.delete(5))
             throw new Exception();
 
     }
 
     @Test
     public void getWithAnswers() throws Exception {
-        MATCHER.assertEquals(testQ0, repository.getWithAnswers(testQ0.getId()));
+        Question q = repository.getWithAnswers(testQ0.getId());
+        MATCHER.assertEquals(testQ0, q);
     }
 
 }

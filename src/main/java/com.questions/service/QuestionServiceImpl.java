@@ -60,4 +60,9 @@ public class QuestionServiceImpl implements QuestionService {
     public Question getWithAnswers(int id) {
         return null;
     }
+
+    @CacheEvict(cacheNames = "questions", allEntries = true)
+    public void evictCache()
+    {
+    }
 }
