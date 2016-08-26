@@ -44,13 +44,13 @@ public class QuestionServiceImpl implements QuestionService {
         return null;
     }
 
-    @CacheEvict(cacheNames = "questions", allEntries = true)
+    @CacheEvict(value = "questions", allEntries = true)
     @Override
     public Question save(Question q) {
         return null;
     }
 
-    @CacheEvict(cacheNames = "questions", allEntries = true)
+    @CacheEvict(value = "questions", allEntries = true)
     @Override
     public boolean delete(int id) {
         return false;
@@ -61,7 +61,7 @@ public class QuestionServiceImpl implements QuestionService {
         return null;
     }
 
-    @CacheEvict(cacheNames = "questions", allEntries = true)
+    @CacheEvict(value = "questions", allEntries = true)
     public void evictCache()
     {
     }

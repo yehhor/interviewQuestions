@@ -22,10 +22,9 @@ Here is the list of questions with answers
     <c:forEach items="${questionList}" var="question">
         <tr>
             <td>${question.id}</td>
-            <td>${question.question}</td>
-            <td>${question.theme}</td>
-            <td>${question.language}</td>
-            <td>${question.answer}</td>
+            <td>${question.name}</td>
+            <td>${question.theme.name}</td>
+            <td>${question.language.name}</td>
         </tr>
     </c:forEach>
 </table>
