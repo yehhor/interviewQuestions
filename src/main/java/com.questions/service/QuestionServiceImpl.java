@@ -16,12 +16,12 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
-    private QuestionRepository questionRepository;
+    private QuestionRepository repository;
 
     @Cacheable("questions")
     public List<Question> getAll()
     {
-        return questionRepository.getAll();
+        return repository.getAll();
     }
 
     @Override

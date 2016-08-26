@@ -4,13 +4,10 @@ import com.questions.model.Question;
 import com.questions.repository.QuestionRepository;
 import com.questions.util.exception.NotFoundException;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
 import static com.questions.model.Language.GET_LANG_ID;
 import static com.questions.model.Theme.GET_TH_ID;
 
