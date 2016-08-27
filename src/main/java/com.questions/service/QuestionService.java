@@ -2,6 +2,7 @@ package com.questions.service;
 
 import com.questions.model.Question;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
 /**
@@ -12,9 +13,9 @@ public interface QuestionService {
 
     List<Question> getByThemeAndLanguage(String theme, String lang);
 
-    List<Question> getByTheme(String theme, String lang);
+    List<Question> getByTheme(String theme, String lang) throws OperationNotSupportedException;
 
-    List<Question> getByLang(String theme, String lang);
+    List<Question> getByLang(String theme, String lang) throws OperationNotSupportedException;
 
     Question get(int id);
 
