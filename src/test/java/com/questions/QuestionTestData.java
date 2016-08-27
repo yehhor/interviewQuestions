@@ -19,7 +19,7 @@ public class QuestionTestData {
     public static Question testQ2 = new Question(100002, "Basic programming principle?", "OOP", "Java");
     public static Question testQ3 = new Question(100003, "Class1 extends Class2 what is that mechanims name?", "OOP", "Java");
     public static Question testUpdate = new Question(100003, "Updated", "RunTime...", "C++");
-    public static Question testSaveNew = new Question("testNEW", "lol", "Java");
+    public static Question testSaveNew = new Question("testNEW", "OOP", "Java");
     public static Question testNotFound = new Question(-50, "mockQuestion", "OOP", "Java");
 
     public static List<Question> testList = Arrays.asList(testQ0, testQ1, testQ2, testQ3);
