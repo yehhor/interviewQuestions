@@ -1,14 +1,21 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: T
+  Date: 27.08.2016
+  Time: 20:42
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 
 <body>
 <jsp:include page="fragments/header.jsp"/>
-Here is the list of questions with answers
 <div class="container">
+    <!-- Jumbotron Header -->
     <header class="jumbotron hero-spacer">
+        <h1>new Question!</h1>
         <table>
             <thead>
             <tr>
@@ -19,16 +26,18 @@ Here is the list of questions with answers
                 <th>answer</th>
             </tr>
             </thead>
-            <c:forEach items="${questionList}" var="question">
-                <tr>
-                    <td>${question.id}</td>
-                    <td>${question.name}</td>
-                    <td>${question.theme.name}</td>
-                    <td>${question.language.name}</td>
-                </tr>
-            </c:forEach>
+            <tr>
+                <c:set var="question" value='${pageContext.request.getAttribute("question")}'/>
+                <td>${question.id}</td>
+                <td>${question.name}</td>
+                <td>${question.theme.name}</td>
+                <td>${question.language.name}</td>
+            </tr>
         </table>
+        <p><a class="btn btn-primary btn-large" href="questions/all">Get All Questions</a>
+        </p>
     </header>
+
     <hr>
 
     <!-- Title -->
@@ -104,11 +113,12 @@ Here is the list of questions with answers
     <hr>
     <jsp:include page="fragments/footer.jsp"/>
 </div>
-</body>
 <!-- jQuery -->
 <script src="webjars/jquery/3.1.0/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+
 
 </html>

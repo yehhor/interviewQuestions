@@ -18,6 +18,8 @@
         <hibernate-vaidator.version>5.2.4.Final</hibernate-vaidator.version>
         <hibernate.version>5.2.1.Final</hibernate.version>
         <ehcache.version>2.10.2.2.21</ehcache.version>
+        <bootstrap.version>3.3.7-1</bootstrap.version>
+        <jquery.version>3.1.0</jquery.version>
     </properties>
     <dependencies>
 
@@ -151,6 +153,20 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
+        </dependency>
+
+
+        <!--webjars -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${bootstrap.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${jquery.version}</version>
         </dependency>
 
 
