@@ -46,6 +46,7 @@ public class JPAQuestionReposityoryImpl implements QuestionRepository {
     @Override
     public Question save(Question q)
     {
+        //ToDo if theme and lang not exist? todo repositories for them
         q.getTheme().setId(em.createNamedQuery(GET_TH_ID, Number.class)
                 .setParameter("name", q.getTheme().getName())
                 .getSingleResult().intValue());

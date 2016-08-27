@@ -1,11 +1,15 @@
 package com.questions.web.controllers;
 
+import com.questions.model.Question;
 import com.questions.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -30,6 +34,21 @@ public class QuestionListController {
     {
         model.addAttribute("question", service.get(id));
         return "oneQuestion";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add(HttpServletRequest request)
+    {
+        String name = request.getParameter("questionName");
+        service.save(new Question(name, "OOP", "Java"));
+        return "redirect:/questions/all";
+    }
+
+    @RequestMapping(value = "/remove/{id}")
+    public String remove(@PathVariable int id)
+    {
+        service.delete(id);
+        return "redirect:/questions/all";
     }
 
 }
