@@ -1,5 +1,8 @@
 package com.questions.model;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -23,6 +26,7 @@ import static com.questions.model.Theme.GET_TH_ID;
 )
 @Entity
 @Table(name = "themes")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Theme extends BaseEntity {
 
     public static final String GET_TH_ID = "Theme.ID";
@@ -37,6 +41,7 @@ public class Theme extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "theme")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Question> questions;
 
 

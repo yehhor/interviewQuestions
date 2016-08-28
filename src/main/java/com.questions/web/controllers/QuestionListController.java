@@ -40,7 +40,9 @@ public class QuestionListController {
     public String add(HttpServletRequest request)
     {
         String name = request.getParameter("questionName");
-        service.save(new Question(name, "OOP", "Java"));
+        String lang = request.getParameter("lang");
+        String theme = request.getParameter("theme");
+        service.save(new Question(name, theme, lang));
         return "redirect:/questions/all";
     }
 

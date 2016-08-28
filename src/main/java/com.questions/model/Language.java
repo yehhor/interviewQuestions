@@ -1,6 +1,13 @@
 package com.questions.model;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import java.util.Set;
 
 import static com.questions.model.Language.GET_ALL;
@@ -19,6 +26,7 @@ import static com.questions.model.Language.GET_LANG_ID;
 )
 @Entity
 @Table(name = "languages")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Language extends BaseEntity {
 
     public static final String GET_LANG_ID = "Lang.ID";
@@ -34,6 +42,7 @@ public class Language extends BaseEntity {
 
 
     @OneToMany(mappedBy = "language")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Question> questions;
 
     public Set<Question> getQuestions() {

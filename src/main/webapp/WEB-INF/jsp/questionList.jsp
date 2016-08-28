@@ -34,7 +34,37 @@
             <input type="text" class="form-control" name="questionName" id="questionName" placeholder="Question Text">
         </div>
 
+
+        <select name="theme" class="form-control">
+            <c:forEach items="${themeList}" var="t">
+                <option value="${t.name}" class="btn btn-default">${t.name}</option>
+            </c:forEach>
+        </select>
+
+
+        <select name="lang" class="form-control">
+            <c:forEach items="${langList}" var="l">
+                <option value="${l.name}" class="btn btn-default">${l.name}</option>
+            </c:forEach>
+        </select>
+
         <button type="submit" class="btn btn-default">Add new</button>
+    </form>
+
+    <form class="form-inline" method="post" action="theme/add">
+        <div class="form-group">
+            <label for="themeName">Theme</label>
+            <input type="text" class="form-control" name="themeName" id="themeName" placeholder="Question Text">
+        </div>
+        <button type="submit" class="btn btn-default">Add new Theme</button>
+    </form>
+
+    <form class="form-inline" method="post" action="lang/add">
+        <div class="form-group">
+            <label for="langName">Language</label>
+            <input type="text" class="form-control" name="langName" id="langName" placeholder="Question Text">
+        </div>
+        <button type="submit" class="btn btn-default">Add new Lang</button>
     </form>
     <!-- Title -->
     <div class="row">
@@ -47,61 +77,61 @@
     <!-- Page Features -->
     <%--<div class="row text-center">--%>
 
-        <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
-            <%--<div class="thumbnail">--%>
-                <%--<img src="http://placehold.it/800x500" alt="">--%>
-                <%--<div class="caption">--%>
-                    <%--<h3>Feature Label</h3>--%>
-                    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
-                    <%--<p>--%>
-                        <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
-                        <%--Info</a>--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
+    <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
+    <%--<div class="thumbnail">--%>
+    <%--<img src="http://placehold.it/800x500" alt="">--%>
+    <%--<div class="caption">--%>
+    <%--<h3>Feature Label</h3>--%>
+    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
+    <%--<p>--%>
+    <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
+    <%--Info</a>--%>
+    <%--</p>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
 
-        <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
-            <%--<div class="thumbnail">--%>
-                <%--<img src="http://placehold.it/800x500" alt="">--%>
-                <%--<div class="caption">--%>
-                    <%--<h3>Feature Label</h3>--%>
-                    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
-                    <%--<p>--%>
-                        <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
-                        <%--Info</a>--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
+    <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
+    <%--<div class="thumbnail">--%>
+    <%--<img src="http://placehold.it/800x500" alt="">--%>
+    <%--<div class="caption">--%>
+    <%--<h3>Feature Label</h3>--%>
+    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
+    <%--<p>--%>
+    <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
+    <%--Info</a>--%>
+    <%--</p>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
 
-        <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
-            <%--<div class="thumbnail">--%>
-                <%--<img src="http://placehold.it/800x500" alt="">--%>
-                <%--<div class="caption">--%>
-                    <%--<h3>Feature Label</h3>--%>
-                    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
-                    <%--<p>--%>
-                        <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
-                        <%--Info</a>--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
+    <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
+    <%--<div class="thumbnail">--%>
+    <%--<img src="http://placehold.it/800x500" alt="">--%>
+    <%--<div class="caption">--%>
+    <%--<h3>Feature Label</h3>--%>
+    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
+    <%--<p>--%>
+    <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
+    <%--Info</a>--%>
+    <%--</p>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
 
-        <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
-            <%--<div class="thumbnail">--%>
-                <%--<img src="http://placehold.it/800x500" alt="">--%>
-                <%--<div class="caption">--%>
-                    <%--<h3>Feature Label</h3>--%>
-                    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
-                    <%--<p>--%>
-                        <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
-                        <%--Info</a>--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
+    <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
+    <%--<div class="thumbnail">--%>
+    <%--<img src="http://placehold.it/800x500" alt="">--%>
+    <%--<div class="caption">--%>
+    <%--<h3>Feature Label</h3>--%>
+    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
+    <%--<p>--%>
+    <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
+    <%--Info</a>--%>
+    <%--</p>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
 
     <%--</div>--%>
     <!-- /.row -->

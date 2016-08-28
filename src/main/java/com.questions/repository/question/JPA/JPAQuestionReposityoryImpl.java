@@ -1,5 +1,6 @@
 package com.questions.repository.question.JPA;
 
+import com.questions.model.Language;
 import com.questions.model.Question;
 import com.questions.model.Theme;
 import com.questions.repository.question.QuestionRepository;
@@ -49,11 +50,12 @@ public class JPAQuestionReposityoryImpl implements QuestionRepository {
     @Override
     public Question save(Question q)
     {
-        //ToDo if theme and lang not exist? todo repositories for them
-        q.setTheme(em.createNamedQuery(GET_BY_NAME, Theme.class).getSingleResult());
-        q.getLanguage().setId(em.createNamedQuery(GET_LANG_ID, Number.class)
+        q.setTheme(em.createNamedQuery(Theme.GET_BY_NAME, Theme.class)
+                .setParameter("name", q.getTheme().getName())
+                .getSingleResult());
+        q.setLanguage(em.createNamedQuery(GET_BY_NAME, Language.class)
                 .setParameter("name", q.getLanguage().getName())
-                .getSingleResult().intValue());
+                .getSingleResult());
         if (q.isNew()) {
             em.persist(q);
             return q;
