@@ -1,4 +1,4 @@
-package com.questions.repository.JDBC;
+package com.questions.repository.question.JDBC;
 
 /**
  * Created by T on 20.08.2016.

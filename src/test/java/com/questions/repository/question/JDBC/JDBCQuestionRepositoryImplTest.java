@@ -1,8 +1,8 @@
-package com.questions.repository.JDBC;
+package com.questions.repository.question.JDBC;
 
 import com.questions.model.Question;
-import com.questions.repository.JPA.JpaUtil;
-import com.questions.repository.QuestionRepository;
+import com.questions.repository.question.JPA.JpaUtil;
+import com.questions.repository.question.QuestionRepository;
 import com.questions.util.exception.NotFoundException;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,17 +10,13 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 import static com.questions.QuestionTestData.*;
 
@@ -34,7 +30,7 @@ import static com.questions.QuestionTestData.*;
         "classpath:spring/spring-app.xml"
 })
 @Sql(scripts = "classpath:db/populateDB.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, config = @SqlConfig(encoding = "UTF-8"))
-@ActiveProfiles({"JPA", "heroku"})
+@ActiveProfiles({"JPA", "localhost"})
 public class JDBCQuestionRepositoryImplTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(JDBCQuestionRepositoryImplTest.class);

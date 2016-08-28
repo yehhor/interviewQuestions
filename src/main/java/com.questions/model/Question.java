@@ -92,11 +92,6 @@ public class Question extends BaseEntity {
         this.language = language;
     }
 
-
-    public boolean isNew() {
-        return getId() == null;
-    }
-
     @Override
     public String toString() {
         return "Question{" +

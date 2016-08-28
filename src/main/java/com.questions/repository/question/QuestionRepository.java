@@ -1,4 +1,4 @@
-package com.questions.repository;
+package com.questions.repository.question;
 
 import com.questions.model.Language;
 import com.questions.model.Question;
@@ -11,6 +11,7 @@ import java.util.List;
  */
 
 public interface QuestionRepository {
+
     List<Question> getAll();
 
     List<Question> getByThemeAndLanguage(String theme, String lang);

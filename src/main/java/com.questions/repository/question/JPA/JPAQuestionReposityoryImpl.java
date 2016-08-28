@@ -1,13 +1,16 @@
-package com.questions.repository.JPA;
+package com.questions.repository.question.JPA;
 
 import com.questions.model.Question;
-import com.questions.repository.QuestionRepository;
+import com.questions.model.Theme;
+import com.questions.repository.question.QuestionRepository;
 import com.questions.util.exception.NotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+
+import static com.questions.model.Language.GET_BY_NAME;
 import static com.questions.model.Language.GET_LANG_ID;
 import static com.questions.model.Theme.GET_TH_ID;
 
@@ -47,9 +50,7 @@ public class JPAQuestionReposityoryImpl implements QuestionRepository {
     public Question save(Question q)
     {
         //ToDo if theme and lang not exist? todo repositories for them
-        q.getTheme().setId(em.createNamedQuery(GET_TH_ID, Number.class)
-                .setParameter("name", q.getTheme().getName())
-                .getSingleResult().intValue());
+        q.setTheme(em.createNamedQuery(GET_BY_NAME, Theme.class).getSingleResult());
         q.getLanguage().setId(em.createNamedQuery(GET_LANG_ID, Number.class)
                 .setParameter("name", q.getLanguage().getName())
                 .getSingleResult().intValue());

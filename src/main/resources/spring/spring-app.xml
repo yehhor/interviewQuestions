@@ -8,6 +8,8 @@
     <import resource="spring-tool.xml"/>
     <context:annotation-config/>
     <context:component-scan base-package="com.questions.service"/>
+    <context:component-scan base-package="com.questions.repository.lang"/>
+    <context:component-scan base-package="com.questions.repository.theme"/>
 
 
 </beans>

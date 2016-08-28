@@ -1,4 +1,4 @@
-package com.questions.repository.JPA;
+package com.questions.repository.question.JPA;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

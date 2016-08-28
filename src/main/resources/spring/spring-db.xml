@@ -30,7 +30,7 @@
     </beans>
     <beans profile="jdbc">
 
-        <context:component-scan base-package="com.questions.repository.JDBC"/>
+        <context:component-scan base-package="com.questions.repository.question.JDBC"/>
 
         <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
             <constructor-arg ref="dataSource"/>
@@ -42,7 +42,7 @@
     </beans>
 
     <beans profile="JPA">
-        <context:component-scan base-package="com.questions.repository.JPA"/>
+        <context:component-scan base-package="com.questions.repository.question.JPA"/>
 
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
         p:dataSource-ref="dataSource"

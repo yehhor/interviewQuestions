@@ -1,7 +1,5 @@
 package com.questions.model;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -36,5 +34,17 @@ public abstract class BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isNew()
+    {
+        return getId() == null;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

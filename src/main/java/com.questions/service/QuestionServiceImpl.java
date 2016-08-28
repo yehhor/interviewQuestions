@@ -1,7 +1,7 @@
 package com.questions.service;
 
 import com.questions.model.Question;
-import com.questions.repository.QuestionRepository;
+import com.questions.repository.question.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

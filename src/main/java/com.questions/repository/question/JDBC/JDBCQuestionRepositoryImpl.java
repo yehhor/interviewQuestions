@@ -1,8 +1,8 @@
-package com.questions.repository.JDBC;
+package com.questions.repository.question.JDBC;
 
 import com.questions.model.Answer;
 import com.questions.model.Question;
-import com.questions.repository.QuestionRepository;
+import com.questions.repository.question.QuestionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -7,6 +7,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.util.Set;
 
+import static com.questions.model.Theme.GET_ALL;
+import static com.questions.model.Theme.GET_BY_NAME;
 import static com.questions.model.Theme.GET_TH_ID;
 
 /**
@@ -14,7 +16,9 @@ import static com.questions.model.Theme.GET_TH_ID;
  */
 @NamedQueries(
         {
-                @NamedQuery(name = GET_TH_ID, query = "SELECT id FROM Theme where name = :name")
+                @NamedQuery(name = GET_TH_ID, query = "SELECT id FROM Theme where name = :name"),
+                @NamedQuery(name = GET_BY_NAME, query = "SELECT t FROM Theme t where t.name =:name"),
+                @NamedQuery(name = GET_ALL, query = "SELECT t from Theme t order by t.name")
         }
 )
 @Entity
@@ -22,6 +26,8 @@ import static com.questions.model.Theme.GET_TH_ID;
 public class Theme extends BaseEntity {
 
     public static final String GET_TH_ID = "Theme.ID";
+    public static final String GET_BY_NAME = "Theme.GetByName";
+    public static final String GET_ALL = "Theme.getAll";
 
     public Theme(String name) {
         this.name = name;
