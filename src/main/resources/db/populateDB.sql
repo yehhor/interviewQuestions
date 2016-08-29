@@ -29,4 +29,5 @@ INSERT INTO answers (name, question_id, isright) VALUES
   ('FalseAnswer', 100000, false ),
   ('php', 100001, true),
   ('FalseAnswer', 100001, false),
+  ('FalseAnswer', null, false),
   ('RunTime...', 100003, false);

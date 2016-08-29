@@ -24,6 +24,9 @@ public class LangThemeInterceptors extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
+
+        if(!request.getRequestURI().equals("/testing/questions/all"))
+            return;
         request.setAttribute("themeList", thmRep.getAll());
         request.setAttribute("langList", langRep.getAll());
     }

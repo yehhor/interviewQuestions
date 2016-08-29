@@ -42,7 +42,7 @@ CREATE TABLE answers
   id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name        VARCHAR NOT NULL    DEFAULT 'No answer',
   isRight     BOOLEAN             DEFAULT FALSE,
-  question_id INTEGER NOT NULL,
+  question_id INTEGER,
   FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE
 );
 
