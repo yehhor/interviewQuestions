@@ -1,5 +1,6 @@
 package com.questions.repository.question.JPA;
 
+import com.questions.model.Answer;
 import com.questions.model.Language;
 import com.questions.model.Question;
 import com.questions.model.Theme;
@@ -73,9 +74,9 @@ public class JPAQuestionReposityoryImpl implements QuestionRepository {
     }
 
     @Override
-    public Question getWithAnswers(int id) {
-        return em.createNamedQuery(Question.GET_WITH_ANSWERS, Question.class)
+    public List<Answer> getAnswers(int id) {
+        return em.createNamedQuery(Question.GET_ANSWERS, Answer.class)
                 .setParameter("id", id)
-                .getSingleResult();
+                .getResultList();
     }
 }

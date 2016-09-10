@@ -1,5 +1,6 @@
 package com.questions.service;
 
+import com.questions.model.Answer;
 import com.questions.model.Question;
 import com.questions.repository.question.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,7 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionRepository repository;
 
     @Cacheable("questions")
-    public List<Question> getAll()
-    {
+    public List<Question> getAll() {
         return repository.getAll();
     }
 
@@ -58,12 +58,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Question getWithAnswers(int id) {
-        return repository.getWithAnswers(id);
+    public List<Answer> getAnswers(int id) {
+        return repository.getAnswers(id);
     }
 
     @CacheEvict(value = "questions", allEntries = true)
-    public void evictCache()
-    {
+    public void evictCache() {
     }
 }

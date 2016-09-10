@@ -1,5 +1,6 @@
 package com.questions.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 
@@ -40,6 +41,7 @@ public class Theme extends BaseEntity {
     public Theme() {
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "theme")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Question> questions;

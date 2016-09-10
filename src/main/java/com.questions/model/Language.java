@@ -1,5 +1,6 @@
 package com.questions.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 
@@ -41,6 +42,7 @@ public class Language extends BaseEntity {
     }
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "language")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Question> questions;

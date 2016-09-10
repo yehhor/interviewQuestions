@@ -1,5 +1,6 @@
 package com.questions.service;
 
+import com.questions.model.Answer;
 import com.questions.model.Question;
 
 import javax.naming.OperationNotSupportedException;
@@ -23,6 +24,6 @@ public interface QuestionService {
 
     boolean delete(int id);
 
-    Question getWithAnswers(int id);
+    List<Answer> getAnswers(int id);
 
 }

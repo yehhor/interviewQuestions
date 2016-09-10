@@ -123,19 +123,12 @@ public class JDBCQuestionRepositoryImpl implements QuestionRepository {
     }
 
     @Override
-    public Question getWithAnswers(int id) {
-        String sql = "SELECT q.id, q.name, t.name AS theme, l.name AS language " +
-                "FROM questions q " +
-                "JOIN themes t ON q.theme_id = t.id " +
-                "JOIN languages l ON q.language_id = l.id " +
-                "WHERE q.id = :id";
+    @Deprecated
+    public List<Answer> getAnswers(int id) {
+        String sql = "SELECT a FROM answers a WHERE a.question_id =:id";
         SqlParameterSource map = new MapSqlParameterSource("id", id);
-        Question q = namedJdbcTemplate.queryForObject(sql, map, questionMAPPER);
-        sql = "SELECT a.name, a.isright AS \"right\" FROM answers a " +
-                "WHERE a.question_id = :id";
         List<Answer> answers = namedJdbcTemplate.query(sql, map, BeanPropertyRowMapper.newInstance(Answer.class));
-        q.setAnswers(new HashSet<>(answers));
-        return q;
+        return answers;
     }
 }
 

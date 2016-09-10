@@ -102,10 +102,4 @@ public class JDBCQuestionRepositoryImplTest {
 
     }
 
-    @Test
-    public void getWithAnswers() throws Exception {
-        Question q = repository.getWithAnswers(testQ0.getId());
-        MATCHER.assertEquals(testQ0, q);
-    }
-
 }

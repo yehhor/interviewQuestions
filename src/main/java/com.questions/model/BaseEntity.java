@@ -1,14 +1,18 @@
 package com.questions.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+
+import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.*;
 
 /**
  * Created by yehor on 29.06.2016.
  */
 @MappedSuperclass
 @Access(AccessType.FIELD)
+@JsonAutoDetect(fieldVisibility = ANY, getterVisibility = NONE, setterVisibility = NONE, isGetterVisibility = NONE)
 public abstract class BaseEntity {
 
     @Id

@@ -1,21 +1,22 @@
 package com.questions.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
+
+import java.util.List;
 import java.util.Set;
 
-import static com.questions.model.Question.GET_ALL;
-import static com.questions.model.Question.GET_BY_THEME_AND_LANG;
-import static com.questions.model.Question.GET_WITH_ANSWERS;
+import static com.questions.model.Question.*;
 
 /**
  * Created by yehor on 29.06.2016.
  */
 @NamedQueries({
     @NamedQuery(name = GET_ALL, query = "SELECT q from Question q LEFT JOIN FETCH q.theme LEFT JOIN FETCH q.language"),
-    @NamedQuery(name = GET_WITH_ANSWERS, query = "SELECT q from Question q LEFT JOIN FETCH q.answers WHERE q.id =:id"),
+    @NamedQuery(name = GET_ANSWERS, query = "SELECT a from Answer a WHERE a.question.id =:id"),
     @NamedQuery(name = GET_BY_THEME_AND_LANG, query = "SELECT q from Question q " +
             "LEFT JOIN FETCH q.theme " +
             "LEFT JOIN FETCH q.language " +
@@ -28,7 +29,7 @@ public class Question extends BaseEntity {
 
     public static final String GET_ALL = "Question.getAll";
     public static final String GET_BY_THEME_AND_LANG = "Question.getByThemeAndLang";
-    public static final String GET_WITH_ANSWERS = "Question.getWithAnswers";
+    public static final String GET_ANSWERS = "Question.getAnswers";
 
     public Question(Integer id,
                     String name,
@@ -64,15 +65,16 @@ public class Question extends BaseEntity {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Language language;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "question")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Answer> answers;
+    private List<Answer> answers;
 
-    public Set<Answer> getAnswers() {
+    public List<Answer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(Set<Answer> answers) {
+    public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 

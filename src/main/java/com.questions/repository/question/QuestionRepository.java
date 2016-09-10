@@ -1,5 +1,6 @@
 package com.questions.repository.question;
 
+import com.questions.model.Answer;
 import com.questions.model.Language;
 import com.questions.model.Question;
 import com.questions.model.Theme;
@@ -22,6 +23,6 @@ public interface QuestionRepository {
 
     boolean delete(int id);
 
-    Question getWithAnswers(int id);
+    List<Answer> getAnswers(int id);
 
 }

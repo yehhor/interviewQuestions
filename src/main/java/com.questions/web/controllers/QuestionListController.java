@@ -23,9 +23,8 @@ public class QuestionListController {
     private QuestionService service;
 
     @RequestMapping("/all")
-    public String getAll(Model model)
+    public String getAll()
     {
-        model.addAttribute("questionList", service.getAll());
         return "questionList";
     }
 

@@ -8,23 +8,24 @@
 <jsp:include page="fragments/header.jsp"/>
 <div class="container">
     <header class="jumbotron hero-spacer">
-        <table class="table table-striped">
+        <table class="table table-striped" id="dataTable">
             <thead>
             <tr>
                 <th>question</th>
                 <th>theme</th>
                 <th>language</th>
-                <th>Delete</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
-            <c:forEach items="${questionList}" var="q">
-                <tr>
-                    <td>${q.name}</td>
-                    <td>${q.theme.name}</td>
-                    <td>${q.language.name}</td>
-                    <td><a href="questions/remove/${q.id}" class="btn btn-default">Delete</a></td>
-                </tr>
-            </c:forEach>
+            <%--<c:forEach items="${questionList}" var="q">--%>
+            <%--<tr>--%>
+            <%--<td>${q.name}</td>--%>
+            <%--<td>${q.theme.name}</td>--%>
+            <%--<td>${q.language.name}</td>--%>
+            <%--<td><a href="questions/remove/${q.id}" class="btn btn-default">Delete</a></td>--%>
+            <%--</tr>--%>
+            <%--</c:forEach>--%>
         </table>
     </header>
     <hr>
@@ -72,78 +73,38 @@
             <h3>Latest Features</h3>
         </div>
     </div>
-    <!-- /.row -->
 
-    <!-- Page Features -->
-    <%--<div class="row text-center">--%>
-
-    <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
-    <%--<div class="thumbnail">--%>
-    <%--<img src="http://placehold.it/800x500" alt="">--%>
-    <%--<div class="caption">--%>
-    <%--<h3>Feature Label</h3>--%>
-    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
-    <%--<p>--%>
-    <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
-    <%--Info</a>--%>
-    <%--</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-    <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
-    <%--<div class="thumbnail">--%>
-    <%--<img src="http://placehold.it/800x500" alt="">--%>
-    <%--<div class="caption">--%>
-    <%--<h3>Feature Label</h3>--%>
-    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
-    <%--<p>--%>
-    <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
-    <%--Info</a>--%>
-    <%--</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-    <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
-    <%--<div class="thumbnail">--%>
-    <%--<img src="http://placehold.it/800x500" alt="">--%>
-    <%--<div class="caption">--%>
-    <%--<h3>Feature Label</h3>--%>
-    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
-    <%--<p>--%>
-    <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
-    <%--Info</a>--%>
-    <%--</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-    <%--<div class="col-md-3 col-sm-6 hero-feature">--%>
-    <%--<div class="thumbnail">--%>
-    <%--<img src="http://placehold.it/800x500" alt="">--%>
-    <%--<div class="caption">--%>
-    <%--<h3>Feature Label</h3>--%>
-    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>--%>
-    <%--<p>--%>
-    <%--<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More--%>
-    <%--Info</a>--%>
-    <%--</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-    <%--</div>--%>
-    <!-- /.row -->
 
     <hr>
     <jsp:include page="fragments/footer.jsp"/>
 </div>
-</body>
-<!-- jQuery -->
-<script src="webjars/jquery/3.1.0/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
+<div class="modal fade" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">edit title</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped" id="dataTableAnswers">
+                    <thead>
+                    <tr>
+                        <th>name</th>
+                    </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- scripts -->
+<script src="webjars/jquery/3.1.0/jquery.js"></script>
+<script type="text/javascript" src="webjars/datatables/1.10.5/js/jquery.dataTables.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="resources/js/datatableUtil.js"></script>
+<script src="resources/js/btnRenders.js"></script>
 
 </html>
