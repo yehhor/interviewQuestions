@@ -1,5 +1,7 @@
 var answerDataTable;
-function renderEditBtn(data, type, row) {
+var form;
+
+function renderShowQuestionBtn(data, type, row) {
 
     if (type == 'display') {
         return '<a class="btn btn-xs btn-primary" onclick="answerDataTableInit(' + row.id + ')">Show Answers</a>';
@@ -10,6 +12,35 @@ function renderDeleteBtn(data, type, row) {
     if (type == 'display') {
         return '<a class="btn btn-xs btn-primary" onclick="deleteRow(' + row.id + ')">Delete</a>';
     }
+}
+
+function renderAddAnswerBtn(data, type, row) {
+    if (type == 'display') {
+        return '<a class="btn btn-xs btn-primary" onclick="addAnswer(' + row.id + ')">Add answer</a>';
+    }
+}
+
+function addAnswer(id) {
+    $('#questionId').val(id);
+    form = $('#addAnswerForm');
+    form.submit(function () {
+        saveAnswer();
+        return false;
+    });
+    $('#addAnswer').modal();
+}
+
+function saveAnswer() {
+    $.ajax({
+        url: 'rest/q/addAnswer',
+        type: "POST",
+        data: form.serialize(),
+        success: function () {
+            $('#addAnswer').modal('hide');
+            $('#addAnswerForm').find('input').val('');
+            updateTable();
+        }
+    })
 }
 
 function deleteRow(id) {
@@ -25,7 +56,7 @@ function deleteRow(id) {
 }
 
 function answerDataTableInit(id) {
-    if(!(answerDataTable == null))
+    if (!(answerDataTable == null))
         answerDataTable.destroy();
     answerDataTable = $('#dataTableAnswers').DataTable({
         ajax: {

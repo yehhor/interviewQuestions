@@ -1,4 +1,4 @@
-package com.questions.service;
+package com.questions.service.question;
 
 import com.questions.model.Answer;
 import com.questions.model.Question;

@@ -1,4 +1,4 @@
-package com.questions.service;
+package com.questions.service.question;
 
 import com.questions.model.Answer;
 import com.questions.model.Question;
@@ -59,6 +59,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Answer> getAnswers(int id) {
+        //ToDo replace with Answers repository
         return repository.getAnswers(id);
     }
 

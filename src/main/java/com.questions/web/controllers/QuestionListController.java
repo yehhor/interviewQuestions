@@ -1,7 +1,7 @@
 package com.questions.web.controllers;
 
 import com.questions.model.Question;
-import com.questions.service.QuestionService;
+import com.questions.service.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

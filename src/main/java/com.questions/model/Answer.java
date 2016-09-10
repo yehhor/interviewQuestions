@@ -4,13 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+import static com.questions.model.Answer.GET_BY_Q_ID;
+
 /**
  * Created by T on 19.08.2016.
  */
+@NamedQueries({
+    @NamedQuery(name = GET_BY_Q_ID, query = "select a from Answer a where a.question.id =:id")
+})
 @Entity
 @Table(name = "answers")
 public class Answer extends BaseEntity {
 
+    public static final String GET_BY_Q_ID = "Answer.getByQuestionId";
     @Column(name = "isright")
     private boolean right;
 

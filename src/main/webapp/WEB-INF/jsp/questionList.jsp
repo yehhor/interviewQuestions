@@ -16,16 +16,9 @@
                 <th>language</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
-            <%--<c:forEach items="${questionList}" var="q">--%>
-            <%--<tr>--%>
-            <%--<td>${q.name}</td>--%>
-            <%--<td>${q.theme.name}</td>--%>
-            <%--<td>${q.language.name}</td>--%>
-            <%--<td><a href="questions/remove/${q.id}" class="btn btn-default">Delete</a></td>--%>
-            <%--</tr>--%>
-            <%--</c:forEach>--%>
         </table>
     </header>
     <hr>
@@ -77,6 +70,26 @@
 
     <hr>
     <jsp:include page="fragments/footer.jsp"/>
+</div>
+<div class="modal fade" id="addAnswer">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">edit title</h2>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline" method="post" id="addAnswerForm">
+                    <div class="form-group">
+                        <input type="hidden" id="questionId" name="questionId">
+                        <label for="questionName1">Text</label>
+                        <input type="text" class="form-control" name="text" id="questionName1" placeholder="Answer Text">
+                    </div>
+                    <button type="submit" class="btn btn-default">Add new Answer</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="editRow">

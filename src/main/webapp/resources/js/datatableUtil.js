@@ -16,11 +16,15 @@ $(function () {
             {data: "language.name"},
             {
                 defaultContent: "",
-                render: renderEditBtn
+                render: renderShowQuestionBtn
             },
             {
                 defaultContent: "",
                 render: renderDeleteBtn
+            },
+            {
+                defaultContent: "",
+                render: renderAddAnswerBtn
             }
         ]
     });

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+
 import org.hibernate.annotations.Cache;
 
 import java.util.List;
@@ -15,12 +16,12 @@ import static com.questions.model.Question.*;
  * Created by yehor on 29.06.2016.
  */
 @NamedQueries({
-    @NamedQuery(name = GET_ALL, query = "SELECT q from Question q LEFT JOIN FETCH q.theme LEFT JOIN FETCH q.language"),
-    @NamedQuery(name = GET_ANSWERS, query = "SELECT a from Answer a WHERE a.question.id =:id"),
-    @NamedQuery(name = GET_BY_THEME_AND_LANG, query = "SELECT q from Question q " +
-            "LEFT JOIN FETCH q.theme " +
-            "LEFT JOIN FETCH q.language " +
-            "WHERE q.language.name=:lang and q.theme.name=:theme ")
+        @NamedQuery(name = GET_ALL, query = "SELECT q from Question q LEFT JOIN FETCH q.theme LEFT JOIN FETCH q.language"),
+        @NamedQuery(name = GET_ANSWERS, query = "SELECT a from Answer a WHERE a.question.id =:id"),
+        @NamedQuery(name = GET_BY_THEME_AND_LANG, query = "SELECT q from Question q " +
+                "LEFT JOIN FETCH q.theme " +
+                "LEFT JOIN FETCH q.language " +
+                "WHERE q.language.name=:lang and q.theme.name=:theme ")
 })
 @Entity
 @Table(name = "questions")
@@ -49,6 +50,10 @@ public class Question extends BaseEntity {
         this.name = name;
         this.theme = new Theme(theme);
         this.language = new Language(language);
+    }
+
+    public Question(Integer id) {
+        this.id = id;
     }
 
     public Question() {
