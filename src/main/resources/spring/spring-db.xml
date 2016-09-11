@@ -43,6 +43,9 @@
 
     <beans profile="JPA">
         <context:component-scan base-package="com.questions.repository.question.JPA"/>
+        <context:component-scan base-package="com.questions.repository.lang"/>
+        <context:component-scan base-package="com.questions.repository.theme"/>
+        <context:component-scan base-package="com.questions.repository.answer"/>
 
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
         p:dataSource-ref="dataSource"
