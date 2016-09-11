@@ -41,9 +41,11 @@ public class QuestionRestControlller {
 
     @RequestMapping(value = "/addAnswer", method = RequestMethod.POST)
     public void addAnswer(@RequestParam(name = "questionId") Integer questionId,
-                          @RequestParam(name = "text") String text) {
+                          @RequestParam(name = "text") String text,
+                          @RequestParam(name = "right") boolean right) {
         Answer a = new Answer();
         a.setName(text);
+        a.setRight(right);
         answerService.add(a, questionId);
     }
 

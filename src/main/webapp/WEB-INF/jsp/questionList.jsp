@@ -79,12 +79,20 @@
                 <h2 class="modal-title">New Answer</h2>
             </div>
             <div class="modal-body">
-                <form class="form-inline" method="post" id="addAnswerForm">
+                <form method="post" id="addAnswerForm">
                     <div class="form-group">
                         <input type="hidden" id="questionId" name="questionId">
                         <label for="questionName1">Text</label>
-                        <input type="text" class="form-control" name="text" id="questionName1" placeholder="Answer Text">
+                        <input type="text" class="form-control" name="text" id="questionName1"
+                               placeholder="Answer Text"/>
                     </div>
+                    <div class="form-group">
+                        <label>
+                            <input id="isRightAnswer" type="checkbox" name="right"/>
+                            Right
+                        </label>
+                    </div>
+
                     <button type="submit" class="btn btn-default">Add</button>
                 </form>
             </div>

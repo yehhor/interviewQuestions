@@ -36,6 +36,7 @@ function addAnswer(id) {
         saveAnswer();
         return false;
     });
+    form.find('input').val('');
     $('#addAnswer').modal();
 }
 
