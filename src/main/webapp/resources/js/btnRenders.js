@@ -1,5 +1,6 @@
 var answerDataTable;
 var form;
+var activeQuestionId;
 
 function renderShowQuestionBtn(data, type, row) {
 
@@ -14,6 +15,13 @@ function renderDeleteBtn(data, type, row) {
     }
 }
 
+function renderDeleteAnswrBtn(data, type, row) {
+
+    if (type == 'display') {
+        return '<a class="btn btn-xs btn-primary" onclick="deleteAnswerRow(' + row.id + ')">Delete</a>';
+    }
+}
+
 function renderAddAnswerBtn(data, type, row) {
     if (type == 'display') {
         return '<a class="btn btn-xs btn-primary" onclick="addAnswer(' + row.id + ')">Add answer</a>';
@@ -22,6 +30,7 @@ function renderAddAnswerBtn(data, type, row) {
 
 function addAnswer(id) {
     $('#questionId').val(id);
+
     form = $('#addAnswerForm');
     form.submit(function () {
         saveAnswer();
@@ -40,7 +49,8 @@ function saveAnswer() {
             $('#addAnswerForm').find('input').val('');
             updateTable();
         }
-    })
+    });
+    form.unbind('submit');
 }
 
 function deleteRow(id) {
@@ -55,33 +65,54 @@ function deleteRow(id) {
 
 }
 
+function deleteAnswerRow(id) {
+
+    $.ajax({
+        url: 'rest/q/deleteAnswer/' + id,
+        method: "DELETE",
+        success: function () {
+            updateAnswers();
+        }
+    })
+
+}
+
 function answerDataTableInit(id) {
     if (!(answerDataTable == null))
         answerDataTable.destroy();
+    activeQuestionId = id;
     answerDataTable = $('#dataTableAnswers').DataTable({
         ajax: {
-            url: 'rest/q/getAnswer/' + id,
+            url: 'rest/q/getAnswer/' + activeQuestionId,
             dataSrc: ''
         },
         info: true,
         paging: false,
         filter: false,
         columns: [
-            {data: "name"}
-        ]
+            {data: "name"},
+            {
+                defaultContent: "",
+                render: renderDeleteAnswrBtn
+            }
+        ],
+        "createdRow": function (row, data, dataIndex) {
+            if (data.right) {
+                $(row).css("background-color", "EBF7ED");
+            }
+        }
     });
 
-    $('#editRow').modal();
+    $('#showAnswers').modal();
 
 }
 
-function getAnswers(id) {
-    $.get('rest/q/getAnswer/' + id, function (data) {
-        $.each(data, function (key, value) {
-            $.find("span[name='" + key + "']").val(value);
-        });
-        $('#editRow').modal();
-    });
+function updateAnswers() {
+    $.get('rest/q/getAnswer/' + activeQuestionId, updateAnswerTableByData)
+}
+
+function updateAnswerTableByData(data) {
+    answerDataTable.clear().rows.add(data).draw();
 }
 
 function updateTable() {

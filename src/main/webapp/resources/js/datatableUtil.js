@@ -1,14 +1,13 @@
-var ajaxUrl = 'rest/q/getall';
 var datatableApi;
 
 $(function () {
     datatableApi = $('#dataTable').DataTable({
         ajax: {
-            url: ajaxUrl,
+            url: 'rest/q/getall',
             dataSrc: ''
         },
         info: true,
-        paging: false,
+        pagingType: "full_numbers",
         filter: false,
         columns: [
             {data: "name"},

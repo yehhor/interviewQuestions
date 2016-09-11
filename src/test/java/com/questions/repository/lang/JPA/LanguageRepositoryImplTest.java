@@ -1,7 +1,6 @@
 package com.questions.repository.lang.JPA;
 
-import com.questions.LangTestData;
-import com.questions.model.Language;
+
 import com.questions.repository.lang.LanguageRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.naming.OperationNotSupportedException;
 
 import static com.questions.LangTestData.*;
-import static org.junit.Assert.*;
 
 /**
  * Created by T on 28.08.2016.

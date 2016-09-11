@@ -14,4 +14,6 @@ public interface AnswerService {
     List<Answer> getAll(Integer id);
 
     boolean add(Answer answer, Integer id);
+
+    void delete(Integer id);
 }

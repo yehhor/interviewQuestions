@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-
+<link rel="stylesheet" href="webjars/datatables/1.10.5/css/jquery.dataTables.min.css"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 <div class="container">
@@ -76,7 +76,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title">edit title</h2>
+                <h2 class="modal-title">New Answer</h2>
             </div>
             <div class="modal-body">
                 <form class="form-inline" method="post" id="addAnswerForm">
@@ -85,25 +85,26 @@
                         <label for="questionName1">Text</label>
                         <input type="text" class="form-control" name="text" id="questionName1" placeholder="Answer Text">
                     </div>
-                    <button type="submit" class="btn btn-default">Add new Answer</button>
+                    <button type="submit" class="btn btn-default">Add</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="editRow">
+<div class="modal fade" id="showAnswers">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title">edit title</h2>
+                <h2 class="modal-title">Answers</h2>
             </div>
             <div class="modal-body">
                 <table class="table table-striped" id="dataTableAnswers">
                     <thead>
                     <tr>
                         <th>name</th>
+                        <th></th>
                     </tr>
                     </thead>
 

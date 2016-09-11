@@ -14,6 +14,7 @@ import java.util.List;
  * Created by T on 10.09.2016.
  */
 @RestController
+@RequestMapping(value = "/rest/q")
 public class QuestionRestControlller {
 
     @Autowired
@@ -22,28 +23,33 @@ public class QuestionRestControlller {
     @Autowired
     private AnswerService answerService;
 
-    @RequestMapping(value = "/rest/q/getall", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/getall", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Question> getAll() {
 
         return service.getAll();
     }
 
-    @RequestMapping(value = "/rest/q/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Integer id) {
         service.delete(id);
     }
 
-    @RequestMapping(value = "/rest/q/getAnswer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/getAnswer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Answer> getAnswers(@PathVariable Integer id) {
         return service.getAnswers(id);
     }
 
-    @RequestMapping(value = "/rest/q/addAnswer", method = RequestMethod.POST)
+    @RequestMapping(value = "/addAnswer", method = RequestMethod.POST)
     public void addAnswer(@RequestParam(name = "questionId") Integer questionId,
                           @RequestParam(name = "text") String text) {
         Answer a = new Answer();
         a.setName(text);
         answerService.add(a, questionId);
+    }
+
+    @RequestMapping(value = "/deleteAnswer/{id}", method = RequestMethod.DELETE)
+    public void deleteAnswer(@PathVariable Integer id){
+        answerService.delete(id);
     }
 
 }

@@ -14,7 +14,7 @@ public interface AnswerRepository {
 
     Answer get(int id);
 
-    boolean remove(int id) throws OperationNotSupportedException;
+    void remove(int id);
 
     List<Answer> getAll(Integer questionId);
 

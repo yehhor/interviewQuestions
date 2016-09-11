@@ -41,8 +41,8 @@ public class AnswerRepositoryImpl implements AnswerRepository {
 
     @Override
     @Transactional
-    public boolean remove(int id) throws OperationNotSupportedException {
-        throw new OperationNotSupportedException();
+    public void remove(int id) {
+        em.remove(em.find(Answer.class, id));
     }
 
     @Override

@@ -25,4 +25,9 @@ public class AnswerServiceImpl  implements AnswerService{
     public boolean add(Answer answer, Integer id) {
         return repository.save(answer, id) != null;
     }
+
+    @Override
+    public void delete(Integer id) {
+        repository.remove(id);
+    }
 }
