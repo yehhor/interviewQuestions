@@ -46,8 +46,8 @@ function saveAnswer() {
         data: form.serialize(),
         success: function () {
             $('#addAnswer').modal('hide');
-            $('#addAnswerForm').find('input').val('');
-            form.find('input').val('');
+            form.find('#questionName1').val('');
+            form.find('#isRightAnswer').checked(false);
             updateTable();
         }
     });
