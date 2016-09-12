@@ -36,7 +36,6 @@ function addAnswer(id) {
         saveAnswer();
         return false;
     });
-    form.find('input').val('');
     $('#addAnswer').modal();
 }
 
@@ -48,6 +47,7 @@ function saveAnswer() {
         success: function () {
             $('#addAnswer').modal('hide');
             $('#addAnswerForm').find('input').val('');
+            form.find('input').val('');
             updateTable();
         }
     });

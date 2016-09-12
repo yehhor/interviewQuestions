@@ -42,15 +42,16 @@ public class QuestionRestControlller {
     @RequestMapping(value = "/addAnswer", method = RequestMethod.POST)
     public void addAnswer(@RequestParam(name = "questionId") Integer questionId,
                           @RequestParam(name = "text") String text,
-                          @RequestParam(name = "right") boolean right) {
+                          @RequestParam(name = "right", required = false) Boolean right) {
         Answer a = new Answer();
         a.setName(text);
-        a.setRight(right);
+        if (right != null)
+            a.setRight(true);
         answerService.add(a, questionId);
     }
 
     @RequestMapping(value = "/deleteAnswer/{id}", method = RequestMethod.DELETE)
-    public void deleteAnswer(@PathVariable Integer id){
+    public void deleteAnswer(@PathVariable Integer id) {
         answerService.delete(id);
     }
 

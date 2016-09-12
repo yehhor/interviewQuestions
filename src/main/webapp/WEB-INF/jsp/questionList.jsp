@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group">
                         <label>
-                            <input id="isRightAnswer" type="checkbox" name="right"/>
+                            <input id="isRightAnswer" type="checkbox" name="right" value="true"/>
                             Right
                         </label>
                     </div>
